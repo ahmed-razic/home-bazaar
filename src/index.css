@@ -119,10 +119,10 @@ button {
 }
 
 .loadingSpinner {
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
-  border-color: #00cc66 transparent #00cc66 transparent;
+  width: 96px;
+  height: 96px;
+  border: 16px solid;
+  border-color: #cc0000 transparent #cc0000 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
@@ -131,7 +131,7 @@ button {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
