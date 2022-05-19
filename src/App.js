@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import PrivateRoute from './components/PrivateRoute'
-import Home from './pages/Home'
-import SignIn from './pages/SignIn'
-import Profile from './pages/Profile'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import Profile from './pages/Profile';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
           </Route>
           <Route path='/sign-in' element={<SignIn />} />
         </Routes>
+        <Navbar />
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
