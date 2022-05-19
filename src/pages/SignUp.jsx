@@ -1,59 +1,61 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-} from 'firebase/auth';
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase.config';
-import { toast } from 'react-toastify';
-import visibilityIcon from '../assets/svg/visibilityIcon.svg';
-import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
+} from 'firebase/auth'
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../firebase.config'
+import { toast } from 'react-toastify'
+import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+import OAuth from '../components/OAuth'
 
 function SignUp() {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-  });
-  const { name, email, password } = formData;
+  })
+  const { name, email, password } = formData
 
   const onChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
-    });
-  };
+    })
+  }
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const auth = getAuth();
+      const auth = getAuth()
 
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
-      );
+      )
 
-      const user = userCredential.user;
+      const user = userCredential.user
 
-      updateProfile(auth.currentUser, { displayName: name });
+      updateProfile(auth.currentUser, { displayName: name })
 
-      const formDataCopy = { ...formData };
-      delete formDataCopy.password;
-      formDataCopy.timestamp = serverTimestamp();
+      const formDataCopy = { ...formData }
+      delete formDataCopy.password
+      formDataCopy.timestamp = serverTimestamp()
 
-      await setDoc(doc(db, 'users', user.uid), formDataCopy);
-      navigate('/');
+      await setDoc(doc(db, 'users', user.uid), formDataCopy)
+      toast.success('Sign-up was successful')
+      navigate('/')
     } catch {
-      toast('Registration went wrong. Please try again.');
+      toast.error('Registration went wrong. Please try again.')
     }
-  };
+  }
 
   return (
     <div className='pageContainer'>
@@ -108,10 +110,12 @@ function SignUp() {
         </div>
       </form>
 
+      <OAuth />
+
       <Link to='/sign-in' className='registerLink'>
         Sign in Instead
       </Link>
     </div>
-  );
+  )
 }
-export default SignUp;
+export default SignUp

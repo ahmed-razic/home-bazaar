@@ -1,45 +1,47 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { toast } from 'react-toastify';
-import visibilityIcon from '../assets/svg/visibilityIcon.svg';
-import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { toast } from 'react-toastify'
+import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+import OAuth from '../components/OAuth'
 
 function SignIn() {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  });
-  const { email, password } = formData;
+  })
+  const { email, password } = formData
 
   const onChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
-    });
-  };
+    })
+  }
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const auth = getAuth();
+      const auth = getAuth()
 
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
-      );
+      )
 
       if (userCredential.user) {
-        navigate('/');
+        toast.success('Sign-in was successful')
+        navigate('/')
       }
     } catch {
-      toast('Wrong User Credential');
+      toast.error('Wrong User Credential')
     }
-  };
+  }
 
   return (
     <div className='pageContainer'>
@@ -85,10 +87,11 @@ function SignIn() {
         </div>
       </form>
 
+      <OAuth />
       <Link to='/sign-up' className='registerLink'>
         Sign up Instead
       </Link>
     </div>
-  );
+  )
 }
-export default SignIn;
+export default SignIn
