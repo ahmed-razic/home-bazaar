@@ -39,7 +39,6 @@ function Slider() {
   if (loading) {
     return <Spinner />
   }
-  console.log(listings.length)
 
   if (listings.length === 0) {
     return <></>
