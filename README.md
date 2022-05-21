@@ -1,4 +1,4 @@
-# Find Random User
+# Home Bazaar
 
 <p>Home Bazaar is web app done in React.js with Firebase support. Made as an exercise using online-course. It implements React concepts like Routes, customHooks, Fetch with Async/Await and external libraries such as toastify, leaflet maps, swiper.</p>
 
