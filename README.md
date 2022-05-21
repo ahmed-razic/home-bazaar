@@ -1,6 +1,6 @@
 # Home Bazaar
 
-<p>Home Bazaar is web app done in React.js with Firebase support. Made as an exercise using online-course. It implements React concepts like Routes, customHooks, Fetch with Async/Await and external libraries such as toastify, leaflet maps, swiper.</p>
+<p>Home Bazaar is web app done in React.js with Firebase support. Made as an exercise during online-course. It implements React concepts like Routes, customHooks, Fetch with Async/Await and external libraries such as toastify, leaflet maps, swiper.</p>
 
 <div><a href="https://home-bazaar.vercel.app/" target="_blank" rel="noopener noreferrer"
     style="padding:0.5rem 0.7rem;
