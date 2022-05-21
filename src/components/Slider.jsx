@@ -39,6 +39,7 @@ function Slider() {
   if (loading) {
     return <Spinner />
   }
+  console.log(listings.length)
 
   if (listings.length === 0) {
     return <></>
@@ -48,7 +49,6 @@ function Slider() {
     listings && (
       <>
         <p className='exploreHeading'>Recommended</p>
-
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
           {listings.map(({ data, id }) => (
             <SwiperSlide
@@ -59,6 +59,7 @@ function Slider() {
                 style={{
                   background: `url(${data.imgUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
+                  height: '200px',
                 }}
                 className='swiperSlideDiv'
               >
